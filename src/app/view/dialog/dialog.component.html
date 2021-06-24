@@ -10,18 +10,17 @@
 </div>
 <div mat-dialog-content class="ui-g-12 ui-g-nopad" style="margin:0px">
   <div class="ui-g-4 ui-g-nopad" style="border-right: 2px solid silver;">
-    <div class="content-calender" [style.border-bottom]="active === 'today' ? '3px solid green' : none" (click)="todayDate()">Today</div>
-    <div class="content-calender" [style.border-bottom]="active === 'yesterday' ? '3px solid green' : none" (click)="yesterdayDate()">Yesterday</div>
-    <div class="content-calender" [style.border-bottom]="active === 'last7day' ? '3px solid green' : none" (click)="last7Date()">Last 7 days</div>
-    <div class="content-calender" [style.border-bottom]="active === 'last30day' ? '3px solid green' : none" (click)="last30Date()">Last 30 days</div>
-    <div class="content-calender" [style.border-bottom]="active === 'month' ? '3px solid green' : none" (click)="monthDate()">This Month</div>
-    <div class="content-calender" [style.border-bottom]="active === 'custom' ? '3px solid green' : none" (click)="customDate()">Custom</div>
+    <div class="content-calender" [style.border-bottom]="active === 'today' ? '3px solid green' : ''" (click)="todayDate()">Today</div>
+    <div class="content-calender" [style.border-bottom]="active === 'yesterday' ? '3px solid green' : ''" (click)="yesterdayDate()">Yesterday</div>
+    <div class="content-calender" [style.border-bottom]="active === 'last7day' ? '3px solid green' : ''" (click)="last7Date()">Last 7 days</div>
+    <div class="content-calender" [style.border-bottom]="active === 'last30day' ? '3px solid green' : ''" (click)="last30Date()">Last 30 days</div>
+    <div class="content-calender" [style.border-bottom]="active === 'month' ? '3px solid green' : ''" (click)="monthDate()">This Month</div>
+    <div class="content-calender" [style.border-bottom]="active === 'custom' ? '3px solid green' : ''" (click)="customDate()">Custom</div>
     <div style="margin-top: 10px;"><button style="width: 8em;font-size: 14px;" pButton (click)="apply()" label="Apply" class="ui-button-success"></button></div>
   </div>
   <div class="ui-g-8 ui-g-nopad">
     <div class="ui-g-6">
       <mat-calendar
-      [startAt]="selectedMonth"
       [selected]="dialogForm.get('startDate').value" 
       (selectedChange)="onSelectStart($event)"
       [minDate]="minDate" 
