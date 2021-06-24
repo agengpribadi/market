@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe, registerLocaleData } from '@angular/common';
+import { CommonModule, DatePipe, LocationStrategy, PathLocationStrategy, registerLocaleData } from '@angular/common';
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
@@ -12,6 +12,8 @@ import { MessageModule } from 'primeng/message';
 import {DropdownModule} from 'primeng/dropdown';
 import {DataViewModule} from 'primeng/dataview';
 import {ChartModule} from 'primeng/chart';
+import localeId from '@angular/common/locales/id';
+import localeIdExtra from '@angular/common/locales/extra/id';
 import { MatDatepickerModule} from '@angular/material/datepicker';
 import { BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
@@ -63,16 +65,10 @@ registerLocaleData(localeId, 'id');
   providers: [
     CookieService,
     DatePipe,
-    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}}
+    {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
+    { provide: LocationStrategy, useClass: PathLocationStrategy },
   ]
 })
 
 export class AppCommonModule {}
-function localeIdExtra(localeId: any, arg1: string, localeIdExtra: any) {
-  throw new Error('Function not implemented.');
-}
-
-function localeId(localeId: any, arg1: string, localeIdExtra: (localeId: any, arg1: string, localeIdExtra: any) => void) {
-  throw new Error('Function not implemented.');
-}
 
