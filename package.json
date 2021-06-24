@@ -10,7 +10,7 @@
     "start": "ng serve",
     "start:ext": "ng run market-insight:serve-ext",
     "start:ext:prod": "ng run market-insight:serve-ext-prod",
-    "build": "ng build",
+    "build": "ng run market-insight:build-ext-prod",
     "build:ext": "ng run market-insight:build-ext",
     "build:ext:prod": "ng run market-insight:build-ext-prod",
     "test": "ng test",
