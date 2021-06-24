@@ -7,13 +7,13 @@
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
-      "prefix": "",
+      "prefix": "app",
       "schematics": {},
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist",
+            "outputPath": "dist/market-insight",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -22,11 +22,10 @@
               "src/assets"
             ],
             "styles": [
-              "src/custom-theme.scss",
+              "src/styles.css",
               "node_modules/primeng/resources/primeng.min.css",
               "node_modules/font-awesome/css/font-awesome.min.css",
-              "node_modules/primeicons/primeicons.css",
-              "src/styles.css"
+              "node_modules/primeicons/primeicons.css"
             ],
             "scripts": [
               "node_modules/chart.js/dist/Chart.js"
@@ -52,96 +51,15 @@
             }
           }
         },
-        "build-ext": {
-          "builder": "@angular-builders/custom-webpack:browser",
-          "options": {
-            "customWebpackConfig": {
-              "path": "./extra-webpack.config.js",
-              "mergeStrategies": {
-                "entry": "replace",
-                "output": "replace",
-                "externals": "replace"
-              }
-            },
-            "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/app/external-modules/app.external.module.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/assets"
-            ],
-            "styles": [
-              "node_modules/primeng/resources/primeng.min.css",
-              "node_modules/font-awesome/css/font-awesome.min.css",
-              "node_modules/primeicons/primeicons.css",
-              "src/styles.css"
-            ],
-            "scripts": [
-              "node_modules/chart.js/dist/Chart.js"
-            ],
-            "optimization": false,
-            "outputHashing": "none",
-            "sourceMap": false,
-            "extractCss": false,
-            "namedChunks": false,
-            "aot": false,
-            "extractLicenses": false,
-            "vendorChunk": false,
-            "buildOptimizer": false
-          }
-        },
-        "build-ext-prod": {
-          "builder": "@angular-builders/custom-webpack:browser",
-          "options": {
-            "customWebpackConfig": {
-              "path": "./extra-webpack.prod.config.js",
-              "mergeStrategies": {
-                "plugins": "prepend",
-                "output": "replace",
-                "externals": "replace"
-              }
-            },
-            "outputPath": "dist",
-            "index": "src/index.html",
-            "main": "src/main.prod.ts",
-            "tsConfig": "src/tsconfig.app.json",
-            "assets": [
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.css"
-            ],
-            "scripts": [],
-            "optimization": true,
-            "outputHashing": "none",
-            "sourceMap": false,
-            "extractCss": false,
-            "namedChunks": false,
-            "aot": true,
-            "extractLicenses": false,
-            "vendorChunk": false,
-            "buildOptimizer": true
-          }
-        },
         "serve": {
-          "builder": "@angular-builders/dev-server:generic",
+          "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "port": 4200,
             "browserTarget": "market-insight:build"
-          }
-        },
-        "serve-ext": {
-          "builder": "@angular-builders/dev-server:generic",
-          "options": {
-            "port": 4200,
-            "browserTarget": "market-insight:build-ext"
-          }
-        },
-        "serve-ext-prod": {
-          "builder": "@angular-builders/dev-server:generic",
-          "options": {
-            "port": 4200,
-            "browserTarget": "market-insight:build-ext-prod"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "market-insight:build:production"
+            }
           }
         },
         "extract-i18n": {
@@ -158,9 +76,14 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/primeng/resources/primeng.min.css",
+              "node_modules/font-awesome/css/font-awesome.min.css",
+              "node_modules/primeicons/primeicons.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/chart.js/dist/Chart.js"
+            ],
             "assets": [
               "src/assets"
             ]
@@ -209,10 +132,5 @@
       }
     }
   },
-  "defaultProject": "market-insight",
-  "schematics": {
-    "@schematics/angular:component": {
-      "styleext": "css"
-    }
-  }
+  "defaultProject": "market-insight"
 }
