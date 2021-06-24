@@ -1,0 +1,11 @@
+.content-calender{
+    border-bottom: 1px solid silver;
+    padding: 10px 0px 10px 0px;
+    margin-right: 15px;
+    font-size: 14px;
+    cursor: pointer;
+}
+::ng-deep.mat-calendar-body-selected {
+    /*change color of calender selected*/
+    background-color: green !important;
+   } 

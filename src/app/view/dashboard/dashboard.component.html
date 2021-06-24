@@ -1,0 +1,153 @@
+<div class="sidenav">
+  <a><i class="pi pi-list menu" (click)="menu()"></i></a>
+  <a>
+    <img style="width: 30px;padding-bottom: 10px;" (click)="dashboard()"
+      [style.border-bottom]="active === 'dashboard' ? '3px solid #37B04C' : '' " src="assets/images/dashboard.svg">
+  </a>
+</div>
+<div *ngIf="active === 'dashboard'" class="main" style="padding: 15px">
+  <div class="ui-g-12 ui-g-nopad flex" style="margin-top: 75px;margin-bottom: 20px;">
+    <div class="ui-g-8 ui-g-nopad">
+      <label style="font-size: 30px;color: #707070C4;opacity: 1;">Dashboard</label>
+    </div>
+    <div class="ui-g-4 ui-g-nopad">
+      <div class="card" style="display: flex;align-items: center;padding: 10px;margin-bottom: 0;">
+        <div class="ui-g-3 ui-g-nopad" style="display: flex;align-items: center;">
+          <img src="assets/images/calendar.png" style="font-size: 16px; margin-right: 20px;">
+          <label style="font-size: 16px;opacity: 1;color: #8B8B8B;">Period</label>
+        </div>
+        <div class="ui-g-8 ui-g-nopad" style="text-align: center;">
+          <label style="font-size: 16px;opacity: 1;color: #8B8B8B;"> {{startDate | date:'longDate'}} - {{endDate |
+            date:'longDate'}}</label>
+        </div>
+        <div class="ui-g-1 ui-g-nopad" style="text-align: center;">
+          <i (click)="openCalendar()" style="font-size: 22px;cursor: pointer;" class="pi pi-angle-down"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ui-g-12" style="background-color: #37B04C;display: flex;align-items: center;">
+    <div class="ui-g-6">
+      <label style="font-size: 24px;color: white;opacity: 1;">Market Insights</label>
+    </div>
+    <div class="ui-g-6" style="display: flex;align-items: center;justify-content: flex-end;">
+      <img src="assets/images/Help.png" style="font-size: 16px; margin-right: 5px;">
+      <label style="color: white;text-decoration: underline;">Click here for help</label>
+      <i style="font-size: 22px;cursor: pointer;color: white;" class="pi pi-angle-down"></i>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-g-nopad" style="margin-top: 10px;">
+    <div class="card ui-g-3">
+      <div class="ui-g-12" style="display: flex;align-items: center;">
+        <div class="ui-g-6" style="font-size: 14px;color: silver;">
+          Sales Turnover
+        </div>
+        <div class="ui-g-6" style="text-align: end;">
+          <img src="assets/images/more.svg" style="width: 10px;">
+        </div>
+      </div>
+      <div class="ui-g-12" style="display: flex;align-items: center;">
+        <div class="ui-g-9">
+          <div style="font-size: 18px;font-weight: bold;">Rp 3,600,000</div>
+          <div style="display: flex;align-items: center;">
+            <img src="assets/images/arrow.svg" style="width: 8px;margin-right: 3px;">
+            <label style="color: red;margin-right: 5px;">13.8%</label>
+            <label style="color: silver;">last period in products sold</label>
+          </div>
+        </div>
+        <div class="ui-g-3" style="text-align: start;">
+          <img src="assets/images/Sales.svg" style="width: 50px;">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ui-g-12 ui-g-nopad" style="margin-top: 10px;">
+    <div class="card-contain" style="width: 42%;margin-right: 1%;">
+      <div class="ui-g-12 flex-side">
+        <div class="ui-g-6 font-card">
+          Average Purchase Value
+        </div>
+        <div class="ui-g-6 flex-side" style="justify-content: flex-end;">
+          <div style="margin-right: 10px;">
+            <p-dropdown [options]="month"></p-dropdown>
+          </div>
+          <img src="assets/images/more.svg" style="width: 10px;">
+        </div>
+      </div>
+      <div class="ui-g-12 flex-side" style="justify-content: center;">
+        <p-chart width="500px" height="300px" [responsive]="true" type="line" [data]="data"></p-chart>
+      </div>
+    </div>
+    <div class="card-contain" style="width: 28%;;margin-right: 1%;"> 
+      <div class="ui-g-12" style="display: flex;align-items: center;">
+        <div class="ui-g-6 font-card">
+          Best Selling SKU
+        </div>
+        <div class="ui-g-6" style="text-align: end;">
+          <img src="assets/images/more.svg" style="width: 10px;">
+        </div>
+      </div>
+      <div class="ui-g-12 flex-side" style="justify-content: center;">
+        <p-dataView [value]="dataBest" [rows]="3" [paginator]="true">
+          <ng-template let-data pTemplate="listItem">
+            <div class="ui-g" style="border-bottom: 1px solid #d9d9d9;cursor: pointer;">
+              <div class="ui-g-12 ui-md-3" style="text-align:center">
+                <img style="width: 73.1px ; height: 73.1px;" src="assets/images/{{data.image}}">
+              </div>
+              <div class="ui-g-12 ui-md-8">
+                <div class="ui-g">
+                  <div class="ui-g-12 ui-sm-6" style="font-size: 16px;">
+                    <b>{{data.name}}</b>
+                  </div>
+                  <div class="ui-g-12 ui-sm-6 flex-side">
+                    <div class="ui-g-6" style="text-align: start;">{{data.price |
+                      currency:'IDR':'symbol-narrow':'1.0-0'}}</div>
+                    <div class="ui-g-6" style="text-align: end;">{{data.sold}} pcs</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-dataView>
+      </div>
+    </div>
+    <div class="card-contain" style="width: 28%;">
+      <div class="ui-g-12" style="display: flex;align-items: center;">
+        <div class="ui-g-6 font-card">
+          Top Competitor SKU
+        </div>
+        <div class="ui-g-6" style="text-align: end;">
+          <img src="assets/images/more.svg" style="width: 10px;">
+        </div>
+      </div>
+      <div class="ui-g-12 flex-side" style="justify-content: center;">
+        <p-dataView [value]="dataTop" [rows]="3" [paginator]="true">
+          <ng-template let-data pTemplate="listItem">
+            <div class="ui-g" style="border-bottom: 1px solid #d9d9d9;cursor: pointer;">
+              <div class="ui-g-12 ui-md-3" style="text-align:center">
+                <img style="width: 73.1px ; height: 73.1px;" src="assets/images/{{data.image}}">
+              </div>
+              <div class="ui-g-12 ui-md-8">
+                <div class="ui-g">
+                  <div class="ui-g-12 ui-sm-6" style="font-size: 16px;">
+                    <b>{{data.name}}</b>
+                  </div>
+                  <div class="ui-g-12 ui-sm-6 flex-side">
+                    <div class="ui-g-6" style="text-align: start;">{{data.price |
+                      currency:'IDR':'symbol-narrow':'1.0-0'}}</div>
+                    <div class="ui-g-6" style="text-align: end;">{{data.sold}} pcs</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </p-dataView>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="active === 'menu'" class="contain">
+  <img src="assets/images/landing-page.jpg">
+</div>

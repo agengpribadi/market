@@ -1,0 +1,17 @@
+<nav class="sticky">
+  <div class="ui-g-12 shadow-effect head">
+    <div class="ui-g-6" style="height: inherit;">
+      <img src="assets/images/advotics.jpg">
+    </div>
+    <div class="ui-g-6" style="display: flex;align-items: center;justify-content: flex-end;">
+      <div style="margin-right: 25px;">
+        <div style="color: 727272;font-size: 16px;text-align: center;">{{username || 'User'}}</div>
+        <div style="color: grey;font-size: 14px;text-align: center;">Company</div>
+      </div>
+      <i class="pi pi-user" style="color: silver;font-size: 40px;margin-right: 20px;border-radius: 100%;border: 1px solid silver;"></i>
+      <i class="pi pi-sign-out" (click)="logout()" style="color: silver;font-size: 30px;cursor: pointer;"></i>
+    </div>
+  </div>
+</nav>
+<router-outlet></router-outlet>
+
